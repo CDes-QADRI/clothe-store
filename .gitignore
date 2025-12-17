@@ -1,0 +1,51 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+
+# production build output (if any)
+dist/
+build/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# runtime
+*.pid
+*.seed
+*.pid.lock
+
+# local env files (secrets)
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel/
+
+# coverage
+coverage/
+
+# misc
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# typecheck cache
+*.tsbuildinfo
+
+# lint cache
+.eslintcache
+
+# optional: lockfiles are usually committed; keep them tracked
+# (no ignore entries for package-lock.json / yarn.lock / pnpm-lock.yaml)

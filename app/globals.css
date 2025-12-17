@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* theme-token-migration */
+
+:root {
+  --background: #f8fafc;
+  --foreground: #020617;
+  --accent: #e5e7eb;
+  --accent-soft: #f4f4f5;
+  --border-subtle: #e5e7eb;
+}
+
+body {
+  @apply bg-[radial-gradient(circle_at_top,_#eef2ff,_#f9fafb_45%,_#ffffff_80%)] text-slate-900 antialiased;
+}
+
+.page-shell {
+  @apply min-h-screen flex flex-col bg-transparent;
+}
+
+.container-shell {
+  @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.section {
+  @apply py-12 sm:py-20;
+}
+
+.card-surface {
+  @apply bg-white/80 backdrop-blur border border-slate-200/60 rounded-3xl shadow-soft;
+}
+
+@keyframes profileFloatSoft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+.profile-orbit {
+  animation: profileFloatSoft 18s ease-in-out infinite;
+}
+
+.profile-orbit-delayed {
+  animation: profileFloatSoft 22s ease-in-out infinite;
+  animation-delay: -6s;
+}
