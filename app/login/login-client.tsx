@@ -80,7 +80,7 @@ export function LoginClient({ callbackUrl }: { callbackUrl?: string }) {
                 type="email"
                 name="email"
                 required
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="you@example.com"
               />
             </div>
@@ -91,7 +91,7 @@ export function LoginClient({ callbackUrl }: { callbackUrl?: string }) {
                   type={showPassword ? 'text' : 'password'}
                   name="password"
                   required
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                   placeholder="••••••••"
                 />
                 <button

@@ -152,7 +152,7 @@ export default function CheckoutPage() {
               <input
                 name="name"
                 required
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="Ali Khan"
               />
             </div>
@@ -161,7 +161,7 @@ export default function CheckoutPage() {
               <input
                 name="phone"
                 required
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="03xx-xxxxxxx"
               />
             </div>
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
               <input
                 name="city"
                 required
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="Karachi, Lahore, Islamabad..."
               />
             </div>
@@ -179,7 +179,7 @@ export default function CheckoutPage() {
               <input
                 name="area"
                 required
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="DHA Phase 6, Johar Town..."
               />
             </div>
@@ -190,7 +190,7 @@ export default function CheckoutPage() {
               name="address"
               required
               rows={3}
-              className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+              className="w-full rounded-2xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
               placeholder="House / flat number, street, nearest landmark, etc."
             />
           </div>

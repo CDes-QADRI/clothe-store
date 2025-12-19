@@ -92,7 +92,7 @@ export function ResetPasswordClient({ token }: { token?: string }) {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                   placeholder="••••••••"
                 />
                 <button
@@ -125,7 +125,7 @@ export function ResetPasswordClient({ token }: { token?: string }) {
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                 placeholder="Repeat password"
               />
             </div>

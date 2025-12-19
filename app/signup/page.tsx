@@ -196,7 +196,7 @@ export default function SignupPage() {
                   maxLength={6}
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-center text-sm tracking-[0.5em] shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-center text-sm text-slate-900 tracking-[0.5em] shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                   placeholder="••••••"
                 />
               </div>
@@ -225,7 +225,7 @@ export default function SignupPage() {
                 <input
                   name="name"
                   required
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                   placeholder="Ali Khan"
                 />
               </div>
@@ -235,7 +235,7 @@ export default function SignupPage() {
                   type="email"
                   name="email"
                   required
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                   placeholder="you@example.com"
                 />
               </div>
@@ -252,7 +252,7 @@ export default function SignupPage() {
                       setPassword(value);
                       setIsPasswordValid(strongPasswordRegex.test(value));
                     }}
-                    className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                    className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
                     placeholder="••••••••"
                   />
                   <button
