@@ -24,7 +24,23 @@ export async function connectDB() {
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI).then((m) => m);
+    cached.promise = mongoose
+      .connect(MONGODB_URI)
+      .then((m) => m)
+      .catch((error) => {
+        cached.promise = null;
+
+        const message =
+          error instanceof Error ? error.message : String(error);
+
+        if (/bad auth|authentication failed/i.test(message)) {
+          throw new Error(
+            'MongoDB authentication failed. Check your MONGODB_URI username/password (MongoDB Atlas Database Access) and update the env var locally and on Vercel.'
+          );
+        }
+
+        throw error;
+      });
   }
 
   cached.conn = await cached.promise;

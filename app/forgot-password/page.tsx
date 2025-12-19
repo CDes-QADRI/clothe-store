@@ -8,6 +8,8 @@ export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [devResetUrl, setDevResetUrl] = useState<string | null>(null);
+  const [devError, setDevError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -15,6 +17,8 @@ export default function ForgotPasswordPage() {
     setLoading(true);
     setMessage(null);
     setError(null);
+    setDevResetUrl(null);
+    setDevError(null);
 
     try {
       const res = await fetch('/api/auth/forgot-password', {
@@ -32,6 +36,15 @@ export default function ForgotPasswordPage() {
           data.message ||
             'If an account exists for this email, a reset link has been sent.'
         );
+
+        if (process.env.NODE_ENV !== 'production') {
+          if (typeof data.devResetUrl === 'string') {
+            setDevResetUrl(data.devResetUrl);
+          }
+          if (typeof data.devError === 'string') {
+            setDevError(data.devError);
+          }
+        }
       }
     } catch {
       setError('Something went wrong. Please try again.');
@@ -71,6 +84,17 @@ export default function ForgotPasswordPage() {
             </div>
             {error && <p className="text-xs text-red-500">{error}</p>}
             {message && <p className="text-xs text-emerald-600">{message}</p>}
+            {process.env.NODE_ENV !== 'production' && devError && (
+              <p className="text-xs text-amber-600">Dev SMTP error: {devError}</p>
+            )}
+            {process.env.NODE_ENV !== 'production' && devResetUrl && (
+              <p className="text-xs text-slate-600">
+                Dev reset link:{' '}
+                <a className="underline" href={devResetUrl}>
+                  {devResetUrl}
+                </a>
+              </p>
+            )}
             <Button type="submit" size="lg" className="w-full" disabled={loading}>
               {loading ? 'Sending link…' : 'Send reset link'}
             </Button>

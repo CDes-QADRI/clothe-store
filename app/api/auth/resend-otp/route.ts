@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
-import nodemailer from 'nodemailer';
 import { connectDB } from '@/lib/db';
 import { User } from '@/lib/models/user';
+import { sendEmail } from '@/lib/mailer';
 
 export async function POST(req: NextRequest) {
   const { email } = (await req.json()) as { email?: string };
@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
   const normalisedEmail = email.toLowerCase();
 
   try {
+    const isDev = process.env.NODE_ENV !== 'production';
     await connectDB();
 
     const user = await User.findOne({ email: normalisedEmail });
@@ -39,46 +40,27 @@ export async function POST(req: NextRequest) {
     user.emailVerificationExpires = expires;
     await user.save();
 
-    const host = process.env.SMTP_HOST;
-    const port = process.env.SMTP_PORT;
-    const userName = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const from = process.env.EMAIL_FROM;
-
-    if (host && port && userName && pass && from) {
-      const transporter = nodemailer.createTransport({
-        host,
-        port: Number(port),
-        secure: Number(port) === 465,
-        auth: {
-          user: userName,
-          pass
-        }
+    try {
+      await sendEmail({
+        to: normalisedEmail,
+        subject: 'Your AURALEEN verification code',
+        html: `
+          <p>Your new AURALEEN verification code is:</p>
+          <p style="font-size: 24px; font-weight: bold; letter-spacing: 4px;">${verificationCode}</p>
+          <p>This code will expire in 15 minutes.</p>
+        `
       });
-
-      try {
-        await transporter.sendMail({
-          from,
-          to: normalisedEmail,
-          subject: 'Your AURALEEN verification code',
-          html: `
-            <p>Your new AURALEEN verification code is:</p>
-            <p style="font-size: 24px; font-weight: bold; letter-spacing: 4px;">${verificationCode}</p>
-            <p>This code will expire in 15 minutes.</p>
-          `
-        });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Error resending signup OTP email', error);
-        return NextResponse.json(
-          {
-            message:
-              'Verification code regenerated, but email could not be sent. Use the code shown to verify in development.',
-            devCode: verificationCode
-          },
-          { status: 200 }
-        );
-      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error resending signup OTP email', error);
+      return NextResponse.json(
+        {
+          message:
+            'A new code was generated, but we could not send the email right now. Please try again.',
+          ...(isDev ? { devCode: verificationCode } : {})
+        },
+        { status: 200 }
+      );
     }
 
     return NextResponse.json(

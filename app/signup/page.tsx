@@ -14,6 +14,8 @@ export default function SignupPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [otpError, setOtpError] = useState<string | null>(null);
+  const [otpMessage, setOtpMessage] = useState<string | null>(null);
+  const [devOtpCode, setDevOtpCode] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [signupEmail, setSignupEmail] = useState('');
@@ -27,6 +29,8 @@ export default function SignupPage() {
     setSubmitting(true);
     setError(null);
     setOtpError(null);
+    setOtpMessage(null);
+    setDevOtpCode(null);
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -58,6 +62,14 @@ export default function SignupPage() {
       }
 
       setSignupEmail(email);
+      setOtpMessage(
+        data.message ??
+          'We have sent a 6-digit code to your email to verify your account.'
+      );
+
+      if (process.env.NODE_ENV !== 'production' && typeof data.devCode === 'string') {
+        setDevOtpCode(data.devCode);
+      }
       setStep('verify');
       setSubmitting(false);
     } catch {
@@ -122,6 +134,10 @@ export default function SignupPage() {
       }
 
       setResendMessage(data.message ?? 'Code resent.');
+
+      if (process.env.NODE_ENV !== 'production' && typeof data.devCode === 'string') {
+        setDevOtpCode(data.devCode);
+      }
       setResending(false);
     } catch {
       setOtpError('Something went wrong while resending. Please try again.');
@@ -161,6 +177,14 @@ export default function SignupPage() {
                   <span className="font-medium text-slate-900"> {signupEmail}</span>.
                   Enter it below to verify your account.
                 </p>
+                {otpMessage && (
+                  <p className="text-[11px] text-slate-500">{otpMessage}</p>
+                )}
+                {process.env.NODE_ENV !== 'production' && devOtpCode && (
+                  <p className="text-[11px] text-amber-600">
+                    Dev OTP (SMTP down): <span className="font-semibold">{devOtpCode}</span>
+                  </p>
+                )}
               </div>
               <div className="space-y-1">
                 <label className="text-xs font-medium text-slate-700">

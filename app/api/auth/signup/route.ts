@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
-import nodemailer from 'nodemailer';
 import { connectDB } from '@/lib/db';
 import { User } from '@/lib/models/user';
+import { sendEmail } from '@/lib/mailer';
 
 export async function POST(req: NextRequest) {
   const { name, email, password } = (await req.json()) as {
@@ -39,6 +39,7 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const isDev = process.env.NODE_ENV !== 'production';
     await connectDB();
 
     const normalisedEmail = email.toLowerCase();
@@ -73,48 +74,29 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const host = process.env.SMTP_HOST;
-    const port = process.env.SMTP_PORT;
-    const userName = process.env.SMTP_USER;
-    const pass = process.env.SMTP_PASS;
-    const from = process.env.EMAIL_FROM;
-
-    if (host && port && userName && pass && from) {
-      const transporter = nodemailer.createTransport({
-        host,
-        port: Number(port),
-        secure: Number(port) === 465,
-        auth: {
-          user: userName,
-          pass
-        }
+    try {
+      await sendEmail({
+        to: normalisedEmail,
+        subject: 'Verify your AURALEEN account',
+        html: `
+          <p>Welcome to AURALEEN.</p>
+          <p>Your email verification code is:</p>
+          <p style="font-size: 24px; font-weight: bold; letter-spacing: 4px;">${verificationCode}</p>
+          <p>This code will expire in 15 minutes.</p>
+        `
       });
-
-      try {
-        await transporter.sendMail({
-          from,
-          to: normalisedEmail,
-          subject: 'Verify your AURALEEN account',
-          html: `
-            <p>Welcome to AURALEEN.</p>
-            <p>Your email verification code is:</p>
-            <p style="font-size: 24px; font-weight: bold; letter-spacing: 4px;">${verificationCode}</p>
-            <p>This code will expire in 15 minutes.</p>
-          `
-        });
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('Error sending signup OTP email', error);
-        return NextResponse.json(
-          {
-            message:
-              'Account created but verification email could not be sent. Use the code shown to verify in development.',
-            requiresVerification: true,
-            devCode: verificationCode
-          },
-          { status: 201 }
-        );
-      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error sending signup OTP email', error);
+      return NextResponse.json(
+        {
+          message:
+            'Account created, but we could not send the verification email right now. Please try resending the code.',
+          requiresVerification: true,
+          ...(isDev ? { devCode: verificationCode } : {})
+        },
+        { status: 201 }
+      );
     }
 
     return NextResponse.json(
@@ -128,8 +110,16 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Signup error', error);
+
+    const detail = error instanceof Error ? error.message : 'Unknown error';
+
     return NextResponse.json(
-      { error: 'Something went wrong while creating the account.' },
+      {
+        error:
+          process.env.NODE_ENV === 'production'
+            ? 'Something went wrong while creating the account.'
+            : detail
+      },
       { status: 500 }
     );
   }
