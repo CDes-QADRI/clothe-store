@@ -42,15 +42,15 @@ export function HeroSection() {
           transition={{ duration: 0.5 }}
           className="space-y-7"
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500">
+          <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500 dark:text-slate-400">
             AURALEEN · White & Black Unstitched Kapra
           </p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.1rem] lg:leading-[1.05]">
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-[3.1rem] lg:leading-[1.05] dark:text-white">
             White & black unstitched cloth
             <br className="hidden sm:block" />
              designed for Pakistani tailoring.
           </h1>
-          <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
+          <p className="max-w-xl text-sm leading-relaxed text-slate-600 sm:text-[0.95rem] dark:text-slate-300">
             A focused range of cotton and wash & wear in whites and blacks only – tuned GSM, clean fall and dependable finish so your darzi&apos;s stitching always looks premium.
           </p>
           <div className="flex flex-wrap items-center gap-4">
@@ -59,29 +59,29 @@ export function HeroSection() {
                 Shop unstitched suits
               </Button>
             </Link>
-            <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500">
+            <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-500 dark:text-slate-400">
               <span>Cash on Delivery · Pakistan‑wide shipping.</span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em]">
+              <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.2em] dark:border-zinc-700 dark:bg-zinc-800">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                 Fresh whites weekly
               </span>
             </div>
           </div>
-          <div className="mt-4 grid gap-3 text-[11px] text-slate-500 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 text-[11px] text-slate-500 sm:grid-cols-3 dark:text-slate-400">
             <div className="flex items-start gap-2">
-              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white">
+              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white dark:bg-white dark:text-zinc-900">
                 ✓
               </span>
               <p>Weights tuned so your kameez falls sharp, not floppy.</p>
             </div>
             <div className="flex items-start gap-2">
-              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white">
+              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white dark:bg-white dark:text-zinc-900">
                 ✓
               </span>
               <p>Ideal for shalwar kameez, kurta pyjama and waistcoats.</p>
             </div>
             <div className="flex items-start gap-2">
-              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white">
+              <span className="mt-[3px] inline-flex h-4 w-4 items-center justify-center rounded-full bg-slate-900 text-[9px] text-white dark:bg-white dark:text-zinc-900">
                 ✓
               </span>
               <p>Pay cash on delivery anywhere in Pakistan.</p>
@@ -92,7 +92,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative card-surface overflow-hidden border-slate-100/80 bg-white/90"
+          className="relative card-surface overflow-hidden border-slate-100/80 bg-white/90 dark:border-zinc-700/80 dark:bg-zinc-900/90"
         >
           <div className="pointer-events-none absolute -inset-24 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.05),_transparent_55%)]" />
           <Swiper
@@ -111,17 +111,17 @@ export function HeroSection() {
                   >
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/45 via-slate-900/5" />
                   </div>
-                  <div className="flex items-center justify-between gap-3 px-5 py-4 text-xs text-slate-700">
+                  <div className="flex items-center justify-between gap-3 px-5 py-4 text-xs text-slate-700 dark:text-slate-300">
                     <div>
-                      <p className="font-medium uppercase tracking-[0.2em] text-slate-500">
+                      <p className="font-medium uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
                         {slide.tag}
                       </p>
-                      <p className="mt-1 text-sm font-semibold text-slate-900 sm:text-base">{slide.title}</p>
-                      <p className="text-[11px] text-slate-600 sm:text-xs">
+                      <p className="mt-1 text-sm font-semibold text-slate-900 sm:text-base dark:text-white">{slide.title}</p>
+                      <p className="text-[11px] text-slate-600 sm:text-xs dark:text-slate-400">
                         {slide.subtitle}
                       </p>
                     </div>
-                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-medium text-slate-700">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-medium text-slate-700 dark:bg-zinc-800 dark:text-slate-300">
                       White & Black only
                     </span>
                   </div>

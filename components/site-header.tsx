@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { useSession, signOut } from 'next-auth/react';
 import { useCartStore } from '@/lib/cart-store';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const navItems = [
   { href: '/', label: 'Home' },
@@ -58,15 +59,15 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/80 backdrop-blur-xl">
+    <header className="sticky top-0 z-30 border-b border-zinc-200 bg-background/95 backdrop-blur-xl dark:border-zinc-800">
       <div className="container-shell flex h-16 items-center justify-between gap-4 sm:h-20">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-xs font-bold shadow-sm">
+          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-xs font-bold shadow-sm dark:border-zinc-700 dark:bg-zinc-800 dark:text-white">
             AL
           </span>
-          <span className="text-sm sm:text-base">AURALEEN</span>
+          <span className="text-sm sm:text-base dark:text-white">AURALEEN</span>
         </Link>
-        <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-slate-500 sm:flex">
+        <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500 sm:flex dark:text-zinc-400">
           {navItems.map((item) => {
             const isCart = item.href === '/cart';
             const isActive = pathname === item.href;
@@ -75,14 +76,14 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'relative inline-flex items-center gap-1 transition hover:text-slate-900',
+                  'relative inline-flex items-center gap-1 transition hover:text-slate-900 dark:hover:text-white',
                   isActive &&
-                    'text-slate-900 underline underline-offset-4 decoration-slate-300'
+                    'text-slate-900 underline underline-offset-4 decoration-slate-300 dark:text-white dark:decoration-zinc-600'
                 )}
               >
                 <span>{item.label}</span>
                 {isCart && cartCount > 0 && (
-                  <span className="flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white">
+                  <span className="flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white dark:bg-white dark:text-zinc-900">
                     {cartCount}
                   </span>
                 )}
@@ -91,6 +92,7 @@ export function SiteHeader() {
           })}
         </nav>
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           {session ? (
             <div
               className="relative hidden items-center sm:flex"
@@ -100,36 +102,36 @@ export function SiteHeader() {
                 type="button"
                 onClick={() => setAccountMenuOpen((open) => !open)}
                 className={cn(
-                  'inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white text-[11px] font-medium text-slate-700 shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-100 hover:text-emerald-800',
-                  accountMenuOpen && 'border-emerald-300 bg-emerald-100 text-emerald-800'
+                  'inline-flex h-9 w-9 items-center justify-center rounded-full border bg-white text-[11px] font-medium text-slate-700 shadow-sm transition-colors hover:border-emerald-300 hover:bg-emerald-100 hover:text-emerald-800 dark:border-zinc-700 dark:bg-zinc-800 dark:text-slate-200 dark:hover:border-emerald-600 dark:hover:bg-emerald-900 dark:hover:text-emerald-200',
+                  accountMenuOpen && 'border-emerald-300 bg-emerald-100 text-emerald-800 dark:border-emerald-600 dark:bg-emerald-900 dark:text-emerald-200'
                 )}
                 aria-label="Open account menu"
               >
                 <span className="flex flex-col gap-[3px]">
-                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900" />
-                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900" />
-                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900" />
+                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900 dark:bg-white" />
+                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900 dark:bg-white" />
+                  <span className="h-[1.5px] w-4 rounded-full bg-slate-900 dark:bg-white" />
                 </span>
               </button>
               {accountMenuOpen && (
-                <div className="absolute right-0 top-11 w-52 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 text-xs shadow-lg">
-                  <div className="border-b border-slate-200/70 px-3 py-2 text-[11px] text-slate-500">
-                    <p className="text-[11px] font-medium text-slate-900 truncate">
+                <div className="absolute right-0 top-11 w-52 overflow-hidden rounded-2xl border border-slate-200/80 bg-white/95 text-xs shadow-lg dark:border-zinc-700 dark:bg-zinc-900/95">
+                  <div className="border-b border-slate-200/70 px-3 py-2 text-[11px] text-slate-500 dark:border-zinc-700 dark:text-slate-400">
+                    <p className="text-[11px] font-medium text-slate-900 truncate dark:text-white">
                       {session.user?.email}
                     </p>
                   </div>
-                  <nav className="flex flex-col py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-600">
+                  <nav className="flex flex-col py-1 text-[11px] font-medium uppercase tracking-[0.16em] text-slate-600 dark:text-slate-400">
                     <Link
                       href="/account/profile"
                       onClick={() => setAccountMenuOpen(false)}
-                      className="px-3 py-2 hover:bg-slate-50"
+                      className="px-3 py-2 hover:bg-slate-50 dark:hover:bg-zinc-800"
                     >
                       Profile
                     </Link>
                     <Link
                       href="/account/orders"
                       onClick={() => setAccountMenuOpen(false)}
-                      className="px-3 py-2 hover:bg-slate-50"
+                      className="px-3 py-2 hover:bg-slate-50 dark:hover:bg-zinc-800"
                     >
                       Orders
                     </Link>
@@ -139,7 +141,7 @@ export function SiteHeader() {
                         setAccountMenuOpen(false);
                         void handleSignOut();
                       }}
-                      className="px-3 py-2 text-left text-slate-700 hover:bg-slate-900 hover:text-white disabled:opacity-60"
+                      className="px-3 py-2 text-left text-slate-700 hover:bg-slate-900 hover:text-white disabled:opacity-60 dark:text-slate-300 dark:hover:bg-white dark:hover:text-zinc-900"
                       disabled={signingOut}
                     >
                       {signingOut ? 'Signing out…' : 'Sign out'}
@@ -159,37 +161,37 @@ export function SiteHeader() {
           {/* Mobile cart + menu */}
           <Link
             href="/cart"
-            className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] font-medium text-slate-700 shadow-sm sm:hidden"
+            className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] font-medium text-slate-700 shadow-sm sm:hidden dark:border-zinc-700 dark:bg-zinc-800 dark:text-slate-200"
           >
             <span>Cart</span>
             {cartCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white">
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white dark:bg-white dark:text-zinc-900">
                 {cartCount}
               </span>
             )}
           </Link>
           <button
             type="button"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] font-medium text-slate-700 shadow-sm sm:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] font-medium text-slate-700 shadow-sm sm:hidden dark:border-zinc-700 dark:bg-zinc-800 dark:text-slate-200"
             onClick={() => setMobileOpen((open) => !open)}
             aria-label="Toggle navigation"
           >
             <span className="flex flex-col gap-[3px]">
               <span
                 className={cn(
-                  'h-[1.5px] w-4 rounded-full bg-slate-900 transition-transform',
+                  'h-[1.5px] w-4 rounded-full bg-slate-900 transition-transform dark:bg-white',
                   mobileOpen && 'translate-y-[4px] rotate-45'
                 )}
               />
               <span
                 className={cn(
-                  'h-[1.5px] w-3 rounded-full bg-slate-900 transition-opacity',
+                  'h-[1.5px] w-3 rounded-full bg-slate-900 transition-opacity dark:bg-white',
                   mobileOpen && 'opacity-0'
                 )}
               />
               <span
                 className={cn(
-                  'h-[1.5px] w-5 rounded-full bg-slate-900 transition-transform',
+                  'h-[1.5px] w-5 rounded-full bg-slate-900 transition-transform dark:bg-white',
                   mobileOpen && '-translate-y-[4px] -rotate-45'
                 )}
               />
@@ -198,8 +200,8 @@ export function SiteHeader() {
         </div>
       </div>
       {mobileOpen && (
-        <div className="border-t border-slate-200/70 bg-white/95 py-3 shadow-md sm:hidden">
-          <div className="container-shell flex flex-col gap-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-600">
+        <div className="border-t border-zinc-200 bg-white py-3 shadow-md sm:hidden dark:border-zinc-800 dark:bg-zinc-950">
+          <div className="container-shell flex flex-col gap-3 text-xs font-medium uppercase tracking-[0.18em] text-zinc-600 dark:text-zinc-400">
             <nav className="flex flex-col gap-2">
               {navItems.map((item) => {
                 const isCart = item.href === '/cart';
@@ -210,13 +212,13 @@ export function SiteHeader() {
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      'flex items-center justify-between rounded-full border border-transparent bg-slate-50 px-4 py-2 text-[11px] tracking-[0.18em] transition hover:border-slate-200 hover:bg-white',
-                      isActive && 'border-slate-900 bg-slate-900 text-white'
+                      'flex items-center justify-between rounded-full border border-transparent bg-slate-50 px-4 py-2 text-[11px] tracking-[0.18em] transition hover:border-slate-200 hover:bg-white dark:bg-zinc-800 dark:hover:border-zinc-600 dark:hover:bg-zinc-700',
+                      isActive && 'border-slate-900 bg-slate-900 text-white dark:border-white dark:bg-white dark:text-zinc-900'
                     )}
                   >
                     <span>{item.label}</span>
                     {isCart && cartCount > 0 && (
-                      <span className="flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white">
+                      <span className="flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-slate-900 px-1 text-[10px] font-semibold text-white dark:bg-white dark:text-zinc-900">
                         {cartCount}
                       </span>
                     )}
@@ -230,14 +232,14 @@ export function SiteHeader() {
                   <Link
                     href="/account/orders"
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] tracking-[0.18em] text-slate-700"
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] tracking-[0.18em] text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-slate-200"
                   >
                     Orders
                   </Link>
                   <Link
                     href="/account/profile"
                     onClick={() => setMobileOpen(false)}
-                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] tracking-[0.18em] text-slate-700"
+                    className="rounded-full border border-slate-200 bg-white px-4 py-2 text-[11px] tracking-[0.18em] text-slate-700 dark:border-zinc-700 dark:bg-zinc-800 dark:text-slate-200"
                   >
                     Profile
                   </Link>
@@ -250,7 +252,7 @@ export function SiteHeader() {
                     setMobileOpen(false);
                     void handleSignOut();
                   }}
-                  className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white disabled:opacity-60"
+                  className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white disabled:opacity-60 dark:bg-white dark:text-zinc-900"
                   disabled={signingOut}
                 >
                   {signingOut ? 'Signing out…' : 'Sign out'}
@@ -259,7 +261,7 @@ export function SiteHeader() {
                 <Link
                   href="/login"
                   onClick={() => setMobileOpen(false)}
-                  className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white"
+                  className="rounded-full bg-slate-900 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white dark:bg-white dark:text-zinc-900"
                 >
                   Sign in
                 </Link>

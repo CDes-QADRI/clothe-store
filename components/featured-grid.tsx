@@ -23,16 +23,16 @@ export function FeaturedGrid() {
       <div className="container-shell space-y-8">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
               Featured unstitched whites & blacks
             </p>
-            <h2 className="mt-1 text-xl font-semibold tracking-tight text-slate-900 sm:text-2xl">
+            <h2 className="mt-1 text-xl font-semibold tracking-tight text-zinc-900 sm:text-2xl dark:text-zinc-100">
               Cotton and wash & wear selections
             </h2>
           </div>
           <Link
             href="/products"
-            className="text-xs font-medium text-slate-700 underline-offset-4 hover:underline"
+            className="text-xs font-medium text-zinc-700 underline-offset-4 hover:underline dark:text-zinc-300"
           >
             View all products
           </Link>
@@ -45,7 +45,7 @@ export function FeaturedGrid() {
               href={`/products/${item.slug}`}
               className="card-surface flex flex-col gap-3 p-4 transition hover:-translate-y-1 hover:shadow-soft"
             >
-              <div className="relative aspect-square overflow-hidden rounded-2xl bg-slate-50">
+              <div className="relative aspect-square overflow-hidden rounded-2xl bg-zinc-100 dark:bg-zinc-800">
                 <Image
                   src={item.heroImage}
                   alt={item.name}
@@ -56,20 +56,20 @@ export function FeaturedGrid() {
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(15,23,42,0.12),_transparent_60%)] mix-blend-soft-light" />
               </div>
               <div className="flex-1 space-y-1">
-                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500">
+                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
                   {item.category}
                 </p>
-                <h3 className="text-sm font-semibold text-slate-900">{item.name}</h3>
-                <p className="text-[12px] text-slate-500 line-clamp-2">{item.shortDescription}</p>
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{item.name}</h3>
+                <p className="text-[12px] text-zinc-500 line-clamp-2 dark:text-zinc-400">{item.shortDescription}</p>
               </div>
               <div className="mt-2 flex items-center justify-between text-xs">
-                <span className="font-semibold text-slate-900">
+                <span className="font-semibold text-zinc-900 dark:text-zinc-100">
                   Rs. {item.price.toLocaleString()}
                 </span>
                 <button
                   type="button"
                   onClick={(event) => handleQuickAdd(event, item)}
-                  className="rounded-full bg-slate-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400/70 focus:ring-offset-1 focus:ring-offset-white"
+                  className="rounded-full bg-zinc-900 px-3 py-1 text-[11px] font-medium text-white hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400/70 focus:ring-offset-1 focus:ring-offset-white dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200 dark:focus:ring-offset-zinc-900"
                 >
                   Add to cart
                 </button>

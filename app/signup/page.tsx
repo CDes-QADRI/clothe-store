@@ -148,22 +148,22 @@ export default function SignupPage() {
   return (
     <section className="section">
       <div className="container-shell flex justify-center">
-        <ScrollReveal className="w-full max-w-sm space-y-6 rounded-3xl border border-slate-200/70 bg-white/80 p-6 shadow-soft">
+        <ScrollReveal className="w-full max-w-sm space-y-6 rounded-3xl border border-zinc-200 bg-white p-6 shadow-soft dark:border-zinc-800 dark:bg-zinc-900/50">
           <div className="space-y-2">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
               Create account
             </p>
-            <h1 className="text-xl font-semibold tracking-tight text-slate-900">
+            <h1 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
               Join White Kapra Studio
             </h1>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
               Create an account to save your orders and details for
               faster Cash on Delivery checkouts.
             </p>
           </div>
           {step === 'done' ? (
-            <div className="space-y-3 text-sm text-slate-600">
-              <p className="font-medium">Account created.</p>
+            <div className="space-y-3 text-sm text-zinc-600 dark:text-zinc-400">
+              <p className="font-medium dark:text-zinc-100">Account created.</p>
               <p>Your email has been verified. You can now sign in.</p>
               <Button size="sm" onClick={() => router.push('/login')}>
                 Go to sign in
@@ -172,13 +172,13 @@ export default function SignupPage() {
           ) : step === 'verify' ? (
             <form noValidate onSubmit={handleVerify} className="space-y-4 text-sm">
               <div className="space-y-1">
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   We&apos;ve sent a 6-digit verification code to
-                  <span className="font-medium text-slate-900"> {signupEmail}</span>.
+                  <span className="font-medium text-zinc-900 dark:text-zinc-100"> {signupEmail}</span>.
                   Enter it below to verify your account.
                 </p>
                 {otpMessage && (
-                  <p className="text-[11px] text-slate-500">{otpMessage}</p>
+                  <p className="text-[11px] text-zinc-500 dark:text-zinc-400">{otpMessage}</p>
                 )}
                 {process.env.NODE_ENV !== 'production' && devOtpCode && (
                   <p className="text-[11px] text-amber-600">
@@ -187,7 +187,7 @@ export default function SignupPage() {
                 )}
               </div>
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-700">
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">
                   Verification code
                 </label>
                 <input
@@ -196,7 +196,7 @@ export default function SignupPage() {
                   maxLength={6}
                   value={otpCode}
                   onChange={(e) => setOtpCode(e.target.value.replace(/\D/g, ''))}
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-center text-sm text-slate-900 tracking-[0.5em] shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-zinc-200 bg-white px-3 text-center text-sm text-zinc-900 tracking-[0.5em] shadow-sm outline-none ring-0 placeholder:text-zinc-400 focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500"
                   placeholder="••••••"
                 />
               </div>
@@ -213,7 +213,7 @@ export default function SignupPage() {
                 type="button"
                 onClick={handleResend}
                 disabled={resending}
-                className="w-full text-[11px] font-medium text-slate-600 underline-offset-4 hover:underline disabled:opacity-60"
+                className="w-full text-[11px] font-medium text-zinc-600 underline-offset-4 hover:underline disabled:opacity-60 dark:text-zinc-400"
               >
                 {resending ? 'Resending code…' : 'Didn\'t get a code? Resend'}
               </button>
@@ -221,26 +221,26 @@ export default function SignupPage() {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 text-sm">
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-700">Full name</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Full name</label>
                 <input
                   name="name"
                   required
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-zinc-200 bg-white px-3 text-sm text-zinc-900 shadow-sm outline-none ring-0 placeholder:text-zinc-400 focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500"
                   placeholder="Ali Khan"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-700">Email</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Email</label>
                 <input
                   type="email"
                   name="email"
                   required
-                  className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                  className="h-10 w-full rounded-full border border-zinc-200 bg-white px-3 text-sm text-zinc-900 shadow-sm outline-none ring-0 placeholder:text-zinc-400 focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500"
                   placeholder="you@example.com"
                 />
               </div>
               <div className="space-y-1">
-                <label className="text-xs font-medium text-slate-700">Password</label>
+                <label className="text-xs font-medium text-zinc-700 dark:text-zinc-300">Password</label>
                 <div className="relative">
                   <input
                     type={showPassword ? 'text' : 'password'}
@@ -252,18 +252,18 @@ export default function SignupPage() {
                       setPassword(value);
                       setIsPasswordValid(strongPasswordRegex.test(value));
                     }}
-                    className="h-10 w-full rounded-full border border-slate-200 bg-white px-3 pr-10 text-sm text-slate-900 shadow-sm outline-none ring-0 placeholder:text-slate-400 focus:border-slate-900"
+                    className="h-10 w-full rounded-full border border-zinc-200 bg-white px-3 pr-10 text-sm text-zinc-900 shadow-sm outline-none ring-0 placeholder:text-zinc-400 focus:border-zinc-900 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500 dark:focus:border-zinc-500"
                     placeholder="••••••••"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword((prev) => !prev)}
-                    className="absolute inset-y-0 right-3 flex items-center text-[11px] text-slate-500 hover:text-slate-900"
+                    className="absolute inset-y-0 right-3 flex items-center text-[11px] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
                   >
                     {showPassword ? 'Hide' : 'Show'}
                   </button>
                 </div>
-                <p className="text-[11px] text-slate-500">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                   Password must be at least 8 characters and include an uppercase
                   letter, a number, and a special character.
                 </p>

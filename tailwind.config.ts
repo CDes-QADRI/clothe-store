@@ -10,11 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#ffffff',
-        foreground: '#020617',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         accent: {
-          DEFAULT: '#e5e7eb',
-          soft: '#f4f4f5'
+          DEFAULT: 'var(--accent)',
+          soft: 'var(--accent-soft)'
         },
         brand: {
           DEFAULT: '#0f172a',

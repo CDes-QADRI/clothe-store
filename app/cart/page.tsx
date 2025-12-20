@@ -17,22 +17,22 @@ export default function CartPage() {
       <ScrollReveal className="container-shell space-y-6">
         <div className="flex items-end justify-between gap-4">
           <div>
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-slate-500">
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
               Cart
             </p>
-            <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+            <h1 className="mt-1 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
               Your selected white & black rolls
             </h1>
           </div>
           {items.length > 0 && (
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
               Cash on Delivery only · You can edit quantities below.
             </p>
           )}
         </div>
 
         {items.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-slate-300/70 bg-white/80 px-6 py-8 text-center text-sm text-slate-500">
+          <div className="rounded-3xl border border-dashed border-zinc-300 bg-white px-6 py-8 text-center text-sm text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/50 dark:text-zinc-400">
             <p>Your cart is empty at the moment.</p>
             <p className="mt-1">Begin with a classic white or black roll for your next suit.</p>
             <Link href="/products" className="mt-4 inline-flex">
@@ -45,30 +45,30 @@ export default function CartPage() {
               {items.map((item) => (
                 <div
                   key={`${item.productId}-${item.size}`}
-                  className="flex items-start justify-between gap-4 rounded-2xl border border-slate-200/70 bg-white/80 px-4 py-3 text-sm shadow-sm"
+                  className="flex items-start justify-between gap-4 rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm shadow-sm dark:border-zinc-800 dark:bg-zinc-900/50"
                 >
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+                    <p className="text-xs font-medium uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
                       {item.size}
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-slate-900">{item.name}</p>
-                    <p className="mt-1 text-xs text-slate-500">Rs. {item.price.toLocaleString()} each</p>
+                    <p className="mt-1 text-sm font-semibold text-zinc-900 dark:text-zinc-100">{item.name}</p>
+                    <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">Rs. {item.price.toLocaleString()} each</p>
                   </div>
                   <div className="flex flex-col items-end gap-2 text-xs">
-                    <div className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1">
+                    <div className="inline-flex items-center rounded-full border border-zinc-200 bg-zinc-50 px-1 dark:border-zinc-700 dark:bg-zinc-800">
                       <button
                         type="button"
-                        className="px-2 py-1"
+                        className="px-2 py-1 dark:text-zinc-100"
                         onClick={() =>
                           updateQuantity(item.productId, item.size, item.quantity - 1)
                         }
                       >
                         −
                       </button>
-                      <span className="px-2 text-sm">{item.quantity}</span>
+                      <span className="px-2 text-sm dark:text-zinc-100">{item.quantity}</span>
                       <button
                         type="button"
-                        className="px-2 py-1"
+                        className="px-2 py-1 dark:text-zinc-100"
                         onClick={() =>
                           updateQuantity(item.productId, item.size, item.quantity + 1)
                         }
@@ -78,7 +78,7 @@ export default function CartPage() {
                     </div>
                     <button
                       type="button"
-                      className="text-[11px] text-slate-500 underline-offset-4 hover:underline"
+                      className="text-[11px] text-zinc-500 underline-offset-4 hover:underline dark:text-zinc-400"
                       onClick={() => removeItem(item.productId, item.size)}
                     >
                       Remove
@@ -89,12 +89,12 @@ export default function CartPage() {
             </div>
             <div className="card-surface flex flex-col gap-4 p-5 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-slate-600">Subtotal</span>
-                <span className="text-base font-semibold text-slate-900">
+                <span className="text-zinc-600 dark:text-zinc-400">Subtotal</span>
+                <span className="text-base font-semibold text-zinc-900 dark:text-zinc-100">
                   Rs. {subtotal.toLocaleString()}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500">
+              <p className="text-[11px] text-zinc-500 dark:text-zinc-400">
                 Shipping and COD handling will be confirmed over WhatsApp or call
                 after you place the order.
               </p>
