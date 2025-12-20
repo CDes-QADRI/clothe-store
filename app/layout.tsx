@@ -16,10 +16,8 @@ export const metadata: Metadata = {
 	},
 	description: 'Minimal, premium white clothing store for Pakistan (COD).',
 	icons: {
-        icon: '/icon.png', // Ensure icon.png is in the /public folder
-        shortcut: '/icon.png',
-        apple: '/icon.png',
-    }
+		icon: [{ url: '/icon.svg', type: 'image/svg+xml' }]
+	}
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
