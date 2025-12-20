@@ -62,9 +62,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-30 border-b border-zinc-200 bg-background/95 backdrop-blur-xl dark:border-zinc-800">
       <div className="container-shell flex h-16 items-center justify-between gap-4 sm:h-20">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-zinc-50 text-xs font-bold shadow-sm dark:border-zinc-700 dark:bg-zinc-800 dark:text-white">
-            AL
-          </span>
+          <img
+            src="/icon.svg"
+            alt="AURALEEN"
+            className="h-8 w-8 dark:invert"
+            width={32}
+            height={32}
+          />
           <span className="text-sm sm:text-base dark:text-white">AURALEEN</span>
         </Link>
         <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500 sm:flex dark:text-zinc-400">
