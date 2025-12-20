@@ -14,12 +14,8 @@ export const metadata: Metadata = {
 		default: 'AURALEEN',
 		template: '%s | AURALEEN'
 	},
-	description: 'Minimal, premium white clothing store for Pakistan (COD).',
-	icons: {
-        icon: '/icon.png', // Ensure icon.png is in the /public folder
-        shortcut: '/icon.png',
-        apple: '/icon.png',
-    }
+	description: 'Minimal, premium white clothing store for Pakistan (COD).'
+	
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
